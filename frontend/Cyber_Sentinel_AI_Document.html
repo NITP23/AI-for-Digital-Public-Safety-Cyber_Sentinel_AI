@@ -1,119 +1,650 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cyber Sentinel AI — Detailed Solution Document</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700&display=swap"
+    rel="stylesheet">
   <style>
-    @page { size: A4; margin: 0; }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; color: #1e293b; background: #ffffff; line-height: 1.7; font-size: 11pt; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1e293b;
+      background: #ffffff;
+      line-height: 1.7;
+      font-size: 11pt;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
 
     /* ─── Cover Page ─── */
-    .cover-page { min-height: 100vh; background: linear-gradient(160deg, #05050f 0%, #0a1628 40%, #0f172a 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 60px 40px; position: relative; overflow: hidden; page-break-after: always; }
-    .cover-page::before { content: ''; position: absolute; top: -150px; left: -150px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0, 240, 255, 0.15), transparent 70%); border-radius: 50%; }
-    .cover-page::after { content: ''; position: absolute; bottom: -100px; right: -100px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(176, 38, 255, 0.12), transparent 70%); border-radius: 50%; }
-    .cover-logo { font-family: 'Orbitron', sans-serif; font-size: 3.5rem; font-weight: 700; color: #ffffff; text-shadow: 0 0 30px rgba(0, 240, 255, 0.5); margin-bottom: 8px; position: relative; z-index: 1; }
-    .cover-heading { font-family: 'Orbitron', sans-serif; font-size: 1.35rem; font-weight: 600; color: #ffffff; line-height: 1.8; max-width: 680px; position: relative; z-index: 1; margin-bottom: 16px; text-shadow: 0 0 20px rgba(0, 240, 255, 0.3); }
-    .cover-theme { font-family: 'Inter', sans-serif; font-size: 0.95rem; color: #00f0ff; letter-spacing: 1px; position: relative; z-index: 1; margin-bottom: 32px; padding: 10px 28px; border: 1px solid rgba(0, 240, 255, 0.25); border-radius: 24px; background: rgba(0, 240, 255, 0.06); }
-    .cover-tagline { font-size: 1.15rem; color: #94a3b8; max-width: 600px; line-height: 1.8; position: relative; z-index: 1; margin-bottom: 50px; }
-    .cover-meta { position: relative; z-index: 1; color: #64748b; font-size: 0.9rem; line-height: 2; }
-    .cover-meta strong { color: #e0f2fe; }
-    .cover-divider { width: 80px; height: 2px; background: linear-gradient(90deg, #b026ff, #00f0ff); margin: 24px auto; }
-    .cover-badge { display: inline-block; padding: 8px 24px; border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 24px; color: #00f0ff; font-size: 0.8rem; letter-spacing: 2px; font-family: 'Orbitron', sans-serif; margin-bottom: 32px; position: relative; z-index: 1; }
+    .cover-page {
+      min-height: 100vh;
+      background: linear-gradient(160deg, #05050f 0%, #0a1628 40%, #0f172a 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover-page::before {
+      content: '';
+      position: absolute;
+      top: -150px;
+      left: -150px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(0, 240, 255, 0.15), transparent 70%);
+      border-radius: 50%;
+    }
+
+    .cover-page::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(176, 38, 255, 0.12), transparent 70%);
+      border-radius: 50%;
+    }
+
+    .cover-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow: 0 0 30px rgba(0, 240, 255, 0.5);
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cover-heading {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.8;
+      max-width: 680px;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 16px;
+      text-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+    }
+
+    .cover-theme {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: #00f0ff;
+      letter-spacing: 1px;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 32px;
+      padding: 10px 28px;
+      border: 1px solid rgba(0, 240, 255, 0.25);
+      border-radius: 24px;
+      background: rgba(0, 240, 255, 0.06);
+    }
+
+    .cover-tagline {
+      font-size: 1.15rem;
+      color: #94a3b8;
+      max-width: 600px;
+      line-height: 1.8;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 50px;
+    }
+
+    .cover-meta {
+      position: relative;
+      z-index: 1;
+      color: #64748b;
+      font-size: 0.9rem;
+      line-height: 2;
+    }
+
+    .cover-meta strong {
+      color: #e0f2fe;
+    }
+
+    .cover-divider {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, #b026ff, #00f0ff);
+      margin: 24px auto;
+    }
+
+    .cover-badge {
+      display: inline-block;
+      padding: 8px 24px;
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 24px;
+      color: #00f0ff;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      font-family: 'Orbitron', sans-serif;
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 1;
+    }
 
     /* ─── Page Layout ─── */
-    .page { max-width: 800px; margin: 0 auto; padding: 50px 48px; page-break-after: always; }
-    .page:last-child { page-break-after: avoid; }
-    .section-number { font-family: 'Orbitron', sans-serif; font-size: 0.75rem; letter-spacing: 4px; color: #b026ff; text-transform: uppercase; margin-bottom: 4px; }
-    h1.section-title { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; font-weight: 700; color: #0f172a; margin-bottom: 8px; letter-spacing: 0.5px; }
-    .section-rule { width: 60px; height: 3px; background: linear-gradient(90deg, #b026ff, #00f0ff); border: none; margin-bottom: 28px; border-radius: 2px; }
-    h2 { font-family: 'Orbitron', sans-serif; font-size: 1.15rem; font-weight: 600; color: #1e293b; margin-top: 32px; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid #e2e8f0; }
-    h3 { font-size: 1rem; font-weight: 600; color: #334155; margin-top: 20px; margin-bottom: 8px; }
-    p { margin-bottom: 14px; color: #334155; text-align: justify; }
-    ul, ol { margin-left: 24px; margin-bottom: 16px; }
-    li { margin-bottom: 6px; color: #334155; }
-    li strong { color: #0f172a; }
+    .page {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 50px 48px;
+    }
+
+    .section-number {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      color: #b026ff;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    h1.section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .section-rule {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, #b026ff, #00f0ff);
+      border: none;
+      margin-bottom: 28px;
+      border-radius: 2px;
+    }
+
+    h2 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #1e293b;
+      margin-top: 32px;
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #334155;
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin-bottom: 14px;
+      color: #334155;
+      text-align: justify;
+    }
+
+    ul,
+    ol {
+      margin-left: 24px;
+      margin-bottom: 16px;
+    }
+
+    li {
+      margin-bottom: 6px;
+      color: #334155;
+    }
+
+    li strong {
+      color: #0f172a;
+    }
 
     /* ─── Info Boxes ─── */
-    .info-box { padding: 18px 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid; }
-    .info-box.problem { background: #fef2f2; border-color: #ef4444; }
-    .info-box.solution { background: #f0fdf4; border-color: #22c55e; }
-    .info-box.highlight { background: #f5f3ff; border-color: #8b5cf6; }
-    .info-box.tech { background: #ecfeff; border-color: #06b6d4; }
-    .info-box p { margin-bottom: 0; }
-    .info-box .label { font-family: 'Orbitron', sans-serif; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; font-weight: 600; }
-    .info-box.problem .label { color: #dc2626; }
-    .info-box.solution .label { color: #16a34a; }
-    .info-box.highlight .label { color: #7c3aed; }
-    .info-box.tech .label { color: #0891b2; }
+    .info-box {
+      padding: 18px 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+      border-left: 4px solid;
+    }
+
+    .info-box.problem {
+      background: #fef2f2;
+      border-color: #ef4444;
+    }
+
+    .info-box.solution {
+      background: #f0fdf4;
+      border-color: #22c55e;
+    }
+
+    .info-box.highlight {
+      background: #f5f3ff;
+      border-color: #8b5cf6;
+    }
+
+    .info-box.tech {
+      background: #ecfeff;
+      border-color: #06b6d4;
+    }
+
+    .info-box p {
+      margin-bottom: 0;
+    }
+
+    .info-box .label {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .info-box.problem .label {
+      color: #dc2626;
+    }
+
+    .info-box.solution .label {
+      color: #16a34a;
+    }
+
+    .info-box.highlight .label {
+      color: #7c3aed;
+    }
+
+    .info-box.tech .label {
+      color: #0891b2;
+    }
 
     /* ─── Table ─── */
-    table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.9rem; }
-    th { background: #0f172a; color: #e0f2fe; padding: 12px 16px; text-align: left; font-family: 'Orbitron', sans-serif; font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase; }
-    th:first-child { border-radius: 8px 0 0 0; }
-    th:last-child { border-radius: 0 8px 0 0; }
-    td { padding: 12px 16px; border-bottom: 1px solid #e2e8f0; color: #334155; }
-    tr:nth-child(even) { background: #f8fafc; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.9rem;
+    }
+
+    th {
+      background: #0f172a;
+      color: #e0f2fe;
+      padding: 12px 16px;
+      text-align: left;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    th:first-child {
+      border-radius: 8px 0 0 0;
+    }
+
+    th:last-child {
+      border-radius: 0 8px 0 0;
+    }
+
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #e2e8f0;
+      color: #334155;
+    }
+
+    tr:nth-child(even) {
+      background: #f8fafc;
+    }
 
     /* ─── Architecture Diagram ─── */
-    .arch-diagram { background: #0f172a; color: #e0f2fe; padding: 28px; border-radius: 12px; font-family: 'Courier New', monospace; font-size: 0.75rem; line-height: 1.4; margin: 24px 0; overflow-x: auto; white-space: pre; border: 1px solid rgba(0, 240, 255, 0.2); }
+    .arch-diagram {
+      background: #0f172a;
+      color: #e0f2fe;
+      padding: 28px;
+      border-radius: 12px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      line-height: 1.4;
+      margin: 24px 0;
+      overflow-x: auto;
+      white-space: pre;
+      border: 1px solid rgba(0, 240, 255, 0.2);
+    }
 
     /* ─── Module Cards ─── */
-    .module-card { border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin: 20px 0; background: #fafbfc; page-break-inside: avoid; }
-    .module-card .module-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-    .module-card .module-icon { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; }
-    .module-card .module-name { font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: 600; color: #0f172a; }
-    .module-card .module-desc { font-size: 0.85rem; color: #64748b; }
-    .icon-cyan { background: rgba(0, 240, 255, 0.15); }
-    .icon-purple { background: rgba(176, 38, 255, 0.15); }
-    .icon-red { background: rgba(255, 51, 102, 0.15); }
-    .icon-green { background: rgba(0, 255, 102, 0.15); }
-    .icon-yellow { background: rgba(255, 204, 0, 0.15); }
+    .module-card {
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 24px;
+      margin: 20px 0;
+      background: #fafbfc;
+    }
+
+    .module-card .module-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .module-card .module-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+    }
+
+    .module-card .module-name {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    .module-card .module-desc {
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+
+    .icon-cyan {
+      background: rgba(0, 240, 255, 0.15);
+    }
+
+    .icon-purple {
+      background: rgba(176, 38, 255, 0.15);
+    }
+
+    .icon-red {
+      background: rgba(255, 51, 102, 0.15);
+    }
+
+    .icon-green {
+      background: rgba(0, 255, 102, 0.15);
+    }
+
+    .icon-yellow {
+      background: rgba(255, 204, 0, 0.15);
+    }
 
     /* ─── Flow Steps ─── */
-    .flow-steps { display: flex; flex-direction: column; gap: 0; margin: 20px 0; }
-    .flow-step { display: flex; gap: 16px; align-items: flex-start; }
-    .flow-step-line { display: flex; flex-direction: column; align-items: center; min-width: 32px; }
-    .flow-step-dot { width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, #b026ff, #00f0ff); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.7rem; font-weight: 700; font-family: 'Orbitron', sans-serif; flex-shrink: 0; }
-    .flow-step-connector { width: 2px; height: 24px; background: linear-gradient(to bottom, #b026ff, #00f0ff); opacity: 0.3; }
-    .flow-step-content { padding-bottom: 20px; }
-    .flow-step-content h4 { font-size: 0.95rem; font-weight: 600; color: #0f172a; margin-bottom: 4px; }
-    .flow-step-content p { font-size: 0.88rem; color: #64748b; margin-bottom: 0; }
+    .flow-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 20px 0;
+    }
+
+    .flow-step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .flow-step-line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 32px;
+    }
+
+    .flow-step-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #b026ff, #00f0ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      font-family: 'Orbitron', sans-serif;
+      flex-shrink: 0;
+    }
+
+    .flow-step-connector {
+      width: 2px;
+      height: 24px;
+      background: linear-gradient(to bottom, #b026ff, #00f0ff);
+      opacity: 0.3;
+    }
+
+    .flow-step-content {
+      padding-bottom: 20px;
+    }
+
+    .flow-step-content h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .flow-step-content p {
+      font-size: 0.88rem;
+      color: #64748b;
+      margin-bottom: 0;
+    }
 
     /* ─── KPI Grid ─── */
-    .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 20px 0; }
-    .kpi-card { text-align: center; padding: 20px 16px; border-radius: 12px; border: 1px solid #e2e8f0; background: #fafbfc; }
-    .kpi-value { font-family: 'Orbitron', sans-serif; font-size: 1.6rem; font-weight: 700; background: linear-gradient(135deg, #b026ff, #00f0ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .kpi-label { font-size: 0.8rem; color: #64748b; margin-top: 4px; }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .kpi-card {
+      text-align: center;
+      padding: 20px 16px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      background: #fafbfc;
+    }
+
+    .kpi-value {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #b026ff, #00f0ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .kpi-label {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-top: 4px;
+    }
 
     /* ─── Tech Grid ─── */
-    .tech-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
-    .tech-item { padding: 16px; border: 1px solid #e2e8f0; border-radius: 10px; background: #f8fafc; }
-    .tech-item .tech-name { font-weight: 600; color: #0f172a; margin-bottom: 4px; }
-    .tech-item .tech-role { font-size: 0.85rem; color: #64748b; }
+    .tech-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .tech-item {
+      padding: 16px;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      background: #f8fafc;
+    }
+
+    .tech-item .tech-name {
+      font-weight: 600;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .tech-item .tech-role {
+      font-size: 0.85rem;
+      color: #64748b;
+    }
 
     /* Tags */
-    .tag { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 0.78rem; font-weight: 500; margin-right: 4px; }
-    .tag-cyan { background: #ecfeff; color: #0891b2; }
-    .tag-purple { background: #f5f3ff; color: #7c3aed; }
-    .tag-red { background: #fef2f2; color: #dc2626; }
-    .tag-green { background: #f0fdf4; color: #16a34a; }
+    .tag {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      margin-right: 4px;
+    }
 
-    .page-footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; font-size: 0.75rem; color: #94a3b8; }
+    .tag-cyan {
+      background: #ecfeff;
+      color: #0891b2;
+    }
+
+    .tag-purple {
+      background: #f5f3ff;
+      color: #7c3aed;
+    }
+
+    .tag-red {
+      background: #fef2f2;
+      color: #dc2626;
+    }
+
+    .tag-green {
+      background: #f0fdf4;
+      color: #16a34a;
+    }
+
+    .page-footer {
+      margin-top: 48px;
+      padding-top: 16px;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
 
     /* ─── TOC ─── */
-    .toc-list { list-style: none; margin-left: 0; padding: 0; }
-    .toc-list li { padding: 12px 0; border-bottom: 1px dashed #e2e8f0; display: flex; justify-content: space-between; align-items: center; }
-    .toc-list li:last-child { border-bottom: none; }
-    .toc-number { font-family: 'Orbitron', sans-serif; font-size: 0.75rem; color: #b026ff; margin-right: 12px; min-width: 28px; }
-    .toc-title { flex: 1; font-weight: 500; color: #1e293b; }
-    .toc-page { font-family: 'Orbitron', sans-serif; font-size: 0.75rem; color: #94a3b8; }
+    .toc-list {
+      list-style: none;
+      margin-left: 0;
+      padding: 0;
+    }
 
-    @media print { body { font-size: 10pt; } .cover-page { height: 100vh; } .page { padding: 40px 48px; } .no-break { page-break-inside: avoid; } }
+    .toc-list li {
+      padding: 12px 0;
+      border-bottom: 1px dashed #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .toc-list li:last-child {
+      border-bottom: none;
+    }
+
+    .toc-number {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.75rem;
+      color: #b026ff;
+      margin-right: 12px;
+      min-width: 28px;
+    }
+
+    .toc-title {
+      flex: 1;
+      font-weight: 500;
+      color: #1e293b;
+    }
+
+    .toc-page {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+
+    @media print {
+      @page {
+        margin: 10mm;
+      }
+
+      * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      body {
+        font-size: 10pt;
+      }
+
+      .cover-page {
+        height: 100vh;
+        max-height: 100vh;
+        page-break-after: always;
+        break-after: page;
+      }
+
+      .page {
+        padding: 20px 40px;
+        page-break-after: always;
+        break-after: page;
+      }
+
+      .page:last-of-type, .page:last-child {
+        page-break-after: auto;
+        break-after: auto;
+      }
+
+      .section-title {
+        page-break-before: always;
+        break-before: page;
+      }
+
+      .page > .section-title:first-of-type {
+        page-break-before: auto;
+        break-before: auto;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+        break-after: avoid;
+      }
+
+      .module-card, .info-box, .kpi-card, .tech-item, .flow-step, table, tr, th, td {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+      }
+
+      .no-break {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+    }
   </style>
 </head>
+
 <body>
 
   <!-- ═══════ COVER PAGE ═══════ -->
@@ -121,7 +652,8 @@
     <div class="cover-badge">PROJECT SUBMISSION</div>
     <div class="cover-logo">CYBER SENTINEL AI</div>
     <div class="cover-divider"></div>
-    <div class="cover-heading">AI for Digital Public Safety: Defeating Counterfeiting, Fraud<br>& Digital Arrest Scams</div>
+    <div class="cover-heading">AI for Digital Public Safety: Defeating Counterfeiting, Fraud<br>& Digital Arrest Scams
+    </div>
     <div class="cover-theme">Theme: Smart Cities / Public Safety / Digital Trust / Geospatial Law Enforcement</div>
     <div class="cover-divider"></div>
     <div class="cover-tagline">
@@ -139,13 +671,14 @@
 
   <!-- ═══════ TABLE OF CONTENTS ═══════ -->
   <div class="page">
-    <div class="section-number">Document Navigation</div>
+    <!-- <div class="section-number">Document Navigation</div> -->
     <h1 class="section-title">Table of Contents</h1>
     <hr class="section-rule">
     <ul class="toc-list">
       <li><span class="toc-number">01</span><span class="toc-title">Executive Summary</span></li>
       <li><span class="toc-number">02</span><span class="toc-title">Problem Statement</span></li>
-      <li><span class="toc-number">03</span><span class="toc-title">Proposed Solution — Integrated Architecture</span></li>
+      <li><span class="toc-number">03</span><span class="toc-title">Proposed Solution — Integrated Architecture</span>
+      </li>
       <li><span class="toc-number">04</span><span class="toc-title">System Architecture Diagram</span></li>
       <li><span class="toc-number">05</span><span class="toc-title">Module 1 — Live Call Analyzer</span></li>
       <li><span class="toc-number">06</span><span class="toc-title">Module 2 — Fraud Verifier</span></li>
@@ -166,7 +699,7 @@
 
   <!-- ═══════ 01 — EXECUTIVE SUMMARY ═══════ -->
   <div class="page">
-    <div class="section-number">Section 01</div>
+    <!-- <div class="section-number">Section 01</div> -->
     <h1 class="section-title">Executive Summary</h1>
     <hr class="section-rule">
     <p>
@@ -174,7 +707,7 @@
       Large Language Models, Knowledge Graphs, and Geospatial Crime Prediction into a unified system for
       combating cyber fraud in India. The platform bridges the gap between citizens seeking protection and
       law enforcement agencies conducting investigations, creating a seamless pipeline from <strong>fraud detection
-      to criminal network dismantling</strong>.
+        to criminal network dismantling</strong>.
     </p>
     <p>
       The solution features five interconnected modules: a <em>Live Call Analyzer</em> that intercepts and
@@ -188,89 +721,129 @@
       <p>
         This solution goes beyond basic fraud detection by adding <strong>Explainable AI</strong> (showing
         WHY something is a scam), <strong>Voice Deepfake Detection</strong> (catching AI-generated voices),
-        <strong>Investigation Timelines</strong> (forensic evidence trails), and <strong>AI-powered Crime Prediction</strong>
+        <strong>Investigation Timelines</strong> (forensic evidence trails), and <strong>AI-powered Crime
+          Prediction</strong>
         (predicting future fraud hotspots) — features that are critical for real-world deployment but
         missing from most existing solutions.
       </p>
     </div>
     <div class="kpi-grid">
-      <div class="kpi-card"><div class="kpi-value">5</div><div class="kpi-label">Integrated Modules</div></div>
-      <div class="kpi-card"><div class="kpi-value">98%</div><div class="kpi-label">Scam Detection Accuracy</div></div>
-      <div class="kpi-card"><div class="kpi-value">&lt;5s</div><div class="kpi-label">Real-Time Verdict</div></div>
+      <div class="kpi-card">
+        <div class="kpi-value">5</div>
+        <div class="kpi-label">Integrated Modules</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">98%</div>
+        <div class="kpi-label">Scam Detection Accuracy</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">&lt;5s</div>
+        <div class="kpi-label">Real-Time Verdict</div>
+      </div>
     </div>
     <div class="page-footer"><span>Cyber Sentinel AI — Solution Document</span></div>
   </div>
 
   <!-- ═══════ 02 — PROBLEM STATEMENT ═══════ -->
   <div class="page">
-    <div class="section-number">Section 02</div>
+    <!-- <div class="section-number">Section 02</div> -->
     <h1 class="section-title">Problem Statement</h1>
     <hr class="section-rule">
     <p>India is experiencing an unprecedented surge in cyber fraud. Common fraud types include:</p>
     <ul>
-      <li><strong>"Digital Arrest" Scams:</strong> Fraudsters impersonate CBI/Customs officers to intimidate citizens into transferring money under threat of arrest.</li>
-      <li><strong>Voice Deepfake Scams:</strong> Scammers now use AI-generated voices to impersonate family members or officials, making detection harder.</li>
-      <li><strong>UPI & Payment Fraud:</strong> Fake QR codes, malicious collect requests, and mule account networks.</li>
-      <li><strong>Phishing Attacks:</strong> Fake banking websites, SMS phishing, and social engineering at industrial scale.</li>
-      <li><strong>Organized Fraud Networks:</strong> Syndicated operations running from hubs like Jamtara and Mewat targeting victims pan-India.</li>
+      <li><strong>"Digital Arrest" Scams:</strong> Fraudsters impersonate CBI/Customs officers to intimidate citizens
+        into transferring money under threat of arrest.</li>
+      <li><strong>Voice Deepfake Scams:</strong> Scammers now use AI-generated voices to impersonate family members or
+        officials, making detection harder.</li>
+      <li><strong>UPI & Payment Fraud:</strong> Fake QR codes, malicious collect requests, and mule account networks.
+      </li>
+      <li><strong>Phishing Attacks:</strong> Fake banking websites, SMS phishing, and social engineering at industrial
+        scale.</li>
+      <li><strong>Organized Fraud Networks:</strong> Syndicated operations running from hubs like Jamtara and Mewat
+        targeting victims pan-India.</li>
     </ul>
     <div class="info-box problem">
       <div class="label">The Core Challenge</div>
       <p>
-        Existing systems lack: (1) <strong>Real-time call analysis</strong> — by the time a victim reports, money is already gone.
+        Existing systems lack: (1) <strong>Real-time call analysis</strong> — by the time a victim reports, money is
+        already gone.
         (2) <strong>Explainability</strong> — systems say "scam" but don't explain WHY, reducing trust.
-        (3) <strong>Network-level intelligence</strong> — complaints are processed in isolation, failing to connect dots across cases.
+        (3) <strong>Network-level intelligence</strong> — complaints are processed in isolation, failing to connect dots
+        across cases.
         (4) <strong>Voice deepfake detection</strong> — a rapidly growing threat with no solution in current frameworks.
         (5) <strong>Predictive policing</strong> — police react to crimes instead of preventing them.
       </p>
     </div>
 
     <!-- ═══════ 03 — PROPOSED SOLUTION ═══════ -->
-    <div class="section-number" style="margin-top: 40px;">Section 03</div>
+    <!-- <div class="section-number" style="margin-top: 40px;">Section 03</div> -->
     <h1 class="section-title">Proposed Solution — Integrated Architecture</h1>
     <hr class="section-rule">
     <p>Cyber Sentinel AI addresses every gap through a unified, end-to-end AI pipeline:</p>
     <div class="flow-steps">
       <div class="flow-step">
-        <div class="flow-step-line"><div class="flow-step-dot">1</div><div class="flow-step-connector"></div></div>
+        <div class="flow-step-line">
+          <div class="flow-step-dot">1</div>
+          <div class="flow-step-connector"></div>
+        </div>
         <div class="flow-step-content">
           <h4>Citizen Input → Voice / WhatsApp / SMS</h4>
-          <p>Citizen receives a suspicious call, message, or link. They can use the Live Call Analyzer, or upload content via the Fraud Verifier.</p>
+          <p>Citizen receives a suspicious call, message, or link. They can use the Live Call Analyzer, or upload
+            content via the Fraud Verifier.</p>
         </div>
       </div>
       <div class="flow-step">
-        <div class="flow-step-line"><div class="flow-step-dot">2</div><div class="flow-step-connector"></div></div>
+        <div class="flow-step-line">
+          <div class="flow-step-dot">2</div>
+          <div class="flow-step-connector"></div>
+        </div>
         <div class="flow-step-content">
           <h4>Speech-to-Text (Whisper)</h4>
-          <p>Live audio is converted to text using OpenAI's Whisper model, supporting 12+ Indian languages with real-time transcription.</p>
+          <p>Live audio is converted to text using OpenAI's Whisper model, supporting 12+ Indian languages with
+            real-time transcription.</p>
         </div>
       </div>
       <div class="flow-step">
-        <div class="flow-step-line"><div class="flow-step-dot">3</div><div class="flow-step-connector"></div></div>
+        <div class="flow-step-line">
+          <div class="flow-step-dot">3</div>
+          <div class="flow-step-connector"></div>
+        </div>
         <div class="flow-step-content">
           <h4>LLM Scam Analyzer</h4>
-          <p>The transcript is analyzed by a Large Language Model to classify fraud type, extract entities, and identify scam patterns.</p>
+          <p>The transcript is analyzed by a Large Language Model to classify fraud type, extract entities, and identify
+            scam patterns.</p>
         </div>
       </div>
       <div class="flow-step">
-        <div class="flow-step-line"><div class="flow-step-dot">4</div><div class="flow-step-connector"></div></div>
+        <div class="flow-step-line">
+          <div class="flow-step-dot">4</div>
+          <div class="flow-step-connector"></div>
+        </div>
         <div class="flow-step-content">
           <h4>Explainable Risk Score + Knowledge Graph</h4>
-          <p>An explainable risk score (with reasons like "Threatening language", "Fake officer names") is generated. Entities are fed into the Knowledge Graph to discover connections.</p>
+          <p>An explainable risk score (with reasons like "Threatening language", "Fake officer names") is generated.
+            Entities are fed into the Knowledge Graph to discover connections.</p>
         </div>
       </div>
       <div class="flow-step">
-        <div class="flow-step-line"><div class="flow-step-dot">5</div><div class="flow-step-connector"></div></div>
+        <div class="flow-step-line">
+          <div class="flow-step-dot">5</div>
+          <div class="flow-step-connector"></div>
+        </div>
         <div class="flow-step-content">
           <h4>Immediate Alert → Police Dashboard</h4>
-          <p>High-risk detections trigger instant alerts on the Police Command Center with full context, timeline, and deepfake analysis.</p>
+          <p>High-risk detections trigger instant alerts on the Police Command Center with full context, timeline, and
+            deepfake analysis.</p>
         </div>
       </div>
       <div class="flow-step">
-        <div class="flow-step-line"><div class="flow-step-dot">6</div></div>
+        <div class="flow-step-line">
+          <div class="flow-step-dot">6</div>
+        </div>
         <div class="flow-step-content">
           <h4>Heat Map → Crime Prediction → Investigation Report</h4>
-          <p>Alerts feed the geospatial heat map. AI predicts future hotspots and recommends police deployment strategies.</p>
+          <p>Alerts feed the geospatial heat map. AI predicts future hotspots and recommends police deployment
+            strategies.</p>
         </div>
       </div>
     </div>
@@ -279,55 +852,55 @@
 
   <!-- ═══════ 04 — SYSTEM ARCHITECTURE ═══════ -->
   <div class="page">
-    <div class="section-number">Section 04</div>
+    <!-- <div class="section-number">Section 04</div> -->
     <h1 class="section-title">System Architecture</h1>
     <hr class="section-rule">
     <div class="arch-diagram">
-                            CYBER SENTINEL AI
-                     Integrated Platform Architecture
+      CYBER SENTINEL AI
+      Integrated Platform Architecture
 
-  ┌──────────────────────────────────────────────────────────────┐
-  │                      CITIZEN LAYER                           │
-  │   📞 Voice Call    💬 WhatsApp    📱 App    📩 SMS           │
-  └──────────────────────────┬───────────────────────────────────┘
-                             │
-                             ▼
-  ┌──────────────────────────────────────────────────────────────┐
-  │                   AI PROCESSING PIPELINE                     │
-  │                                                              │
-  │  ┌──────────┐   ┌──────────────┐   ┌────────────────────┐  │
-  │  │ Whisper  │──▶│  LLM Scam    │──▶│  Explainable AI    │  │
-  │  │  STT     │   │  Analyzer    │   │  Risk Scoring      │  │
-  │  └──────────┘   └──────┬───────┘   └────────┬───────────┘  │
-  │                        │                     │               │
-  │  ┌──────────┐          │           ┌─────────▼──────────┐   │
-  │  │ Deepfake │          │           │  Knowledge Graph   │   │
-  │  │ Voice    │          │           │  Phone→SIM→UPI→    │   │
-  │  │ Detector │          │           │  Bank→Victims      │   │
-  │  └──────────┘          │           └────────────────────┘   │
-  │                        │                                     │
-  └────────────────────────┼─────────────────────────────────────┘
-                           │
-           ┌───────────────┼──────────────────┐
-           │               │                  │
-           ▼               ▼                  ▼
-  ┌─────────────┐ ┌──────────────┐ ┌──────────────────┐
-  │ IMMEDIATE   │ │   POLICE     │ │   THREAT         │
-  │ CITIZEN     │ │   COMMAND    │ │   HEAT MAP       │
-  │ ALERT       │ │   CENTER     │ │   + Crime        │
-  │             │ │              │ │   Prediction     │
-  │ • Risk %    │ │ • Scam spots │ │                  │
-  │ • Reasons   │ │ • Phone nums │ │ • City risks     │
-  │ • Timeline  │ │ • Fake sites │ │ • AI deployment  │
-  │ • Advisory  │ │ • Bank accts │ │ • Predictions    │
-  └─────────────┘ └──────────────┘ └──────────────────┘
-                           │
-                           ▼
-                  ┌──────────────────┐
-                  │  INVESTIGATION   │
-                  │  REPORT          │
-                  │  (Auto-generated)│
-                  └──────────────────┘</div>
+      ┌──────────────────────────────────────────────────────────────┐
+      │ CITIZEN LAYER │
+      │ 📞 Voice Call 💬 WhatsApp 📱 App 📩 SMS │
+      └──────────────────────────┬───────────────────────────────────┘
+      │
+      ▼
+      ┌──────────────────────────────────────────────────────────────┐
+      │ AI PROCESSING PIPELINE │
+      │ │
+      │ ┌──────────┐ ┌──────────────┐ ┌────────────────────┐ │
+      │ │ Whisper │──▶│ LLM Scam │──▶│ Explainable AI │ │
+      │ │ STT │ │ Analyzer │ │ Risk Scoring │ │
+      │ └──────────┘ └──────┬───────┘ └────────┬───────────┘ │
+      │ │ │ │
+      │ ┌──────────┐ │ ┌─────────▼──────────┐ │
+      │ │ Deepfake │ │ │ Knowledge Graph │ │
+      │ │ Voice │ │ │ Phone→SIM→UPI→ │ │
+      │ │ Detector │ │ │ Bank→Victims │ │
+      │ └──────────┘ │ └────────────────────┘ │
+      │ │ │
+      └────────────────────────┼─────────────────────────────────────┘
+      │
+      ┌───────────────┼──────────────────┐
+      │ │ │
+      ▼ ▼ ▼
+      ┌─────────────┐ ┌──────────────┐ ┌──────────────────┐
+      │ IMMEDIATE │ │ POLICE │ │ THREAT │
+      │ CITIZEN │ │ COMMAND │ │ HEAT MAP │
+      │ ALERT │ │ CENTER │ │ + Crime │
+      │ │ │ │ │ Prediction │
+      │ • Risk % │ │ • Scam spots │ │ │
+      │ • Reasons │ │ • Phone nums │ │ • City risks │
+      │ • Timeline │ │ • Fake sites │ │ • AI deployment │
+      │ • Advisory │ │ • Bank accts │ │ • Predictions │
+      └─────────────┘ └──────────────┘ └──────────────────┘
+      │
+      ▼
+      ┌──────────────────┐
+      │ INVESTIGATION │
+      │ REPORT │
+      │ (Auto-generated)│
+      └──────────────────┘</div>
     <div class="info-box solution">
       <div class="label">Architecture Principle</div>
       <p>
@@ -341,7 +914,7 @@
 
   <!-- ═══════ 05 — MODULE 1: LIVE CALL ANALYZER ═══════ -->
   <div class="page">
-    <div class="section-number">Section 05</div>
+    <!-- <div class="section-number">Section 05</div> -->
     <h1 class="section-title">Module 1 — Live Call Analyzer</h1>
     <hr class="section-rule">
     <div class="module-card">
@@ -355,28 +928,67 @@
       <h3>How It Works</h3>
       <div class="flow-steps">
         <div class="flow-step">
-          <div class="flow-step-line"><div class="flow-step-dot">1</div><div class="flow-step-connector"></div></div>
-          <div class="flow-step-content"><h4>Citizen receives suspicious call</h4><p>The system detects incoming call from an unknown/VOIP number.</p></div>
+          <div class="flow-step-line">
+            <div class="flow-step-dot">1</div>
+            <div class="flow-step-connector"></div>
+          </div>
+          <div class="flow-step-content">
+            <h4>Citizen receives suspicious call</h4>
+            <p>The system detects incoming call from an unknown/VOIP number.</p>
+          </div>
         </div>
         <div class="flow-step">
-          <div class="flow-step-line"><div class="flow-step-dot">2</div><div class="flow-step-connector"></div></div>
-          <div class="flow-step-content"><h4>AI Listens — Whisper STT</h4><p>OpenAI Whisper converts live speech to text in real-time, supporting 12+ Indian languages. Each line is flagged for threats.</p></div>
+          <div class="flow-step-line">
+            <div class="flow-step-dot">2</div>
+            <div class="flow-step-connector"></div>
+          </div>
+          <div class="flow-step-content">
+            <h4>AI Listens — Whisper STT</h4>
+            <p>OpenAI Whisper converts live speech to text in real-time, supporting 12+ Indian languages. Each line is
+              flagged for threats.</p>
+          </div>
         </div>
         <div class="flow-step">
-          <div class="flow-step-line"><div class="flow-step-dot">3</div><div class="flow-step-connector"></div></div>
-          <div class="flow-step-content"><h4>LLM Analyzes Transcript</h4><p>The LLM classifies the conversation pattern — "Digital Arrest", "Phishing", "Extortion" — and extracts entities like names, account numbers, and UPI IDs.</p></div>
+          <div class="flow-step-line">
+            <div class="flow-step-dot">3</div>
+            <div class="flow-step-connector"></div>
+          </div>
+          <div class="flow-step-content">
+            <h4>LLM Analyzes Transcript</h4>
+            <p>The LLM classifies the conversation pattern — "Digital Arrest", "Phishing", "Extortion" — and extracts
+              entities like names, account numbers, and UPI IDs.</p>
+          </div>
         </div>
         <div class="flow-step">
-          <div class="flow-step-line"><div class="flow-step-dot">4</div><div class="flow-step-connector"></div></div>
-          <div class="flow-step-content"><h4>Explainable Risk Score</h4><p>98% scam probability with clear reasons: ✓ Threatening Language (97%), ✓ Fake Officer Identity (94%), ✓ Money Transfer Request (99%), ✓ Spoofed Number (91%).</p></div>
+          <div class="flow-step-line">
+            <div class="flow-step-dot">4</div>
+            <div class="flow-step-connector"></div>
+          </div>
+          <div class="flow-step-content">
+            <h4>Explainable Risk Score</h4>
+            <p>98% scam probability with clear reasons: ✓ Threatening Language (97%), ✓ Fake Officer Identity (94%), ✓
+              Money Transfer Request (99%), ✓ Spoofed Number (91%).</p>
+          </div>
         </div>
         <div class="flow-step">
-          <div class="flow-step-line"><div class="flow-step-dot">5</div><div class="flow-step-connector"></div></div>
-          <div class="flow-step-content"><h4>Voice Deepfake Detection</h4><p>87% probability of AI-generated voice. Spectral analysis reveals synthetic artifacts.</p></div>
+          <div class="flow-step-line">
+            <div class="flow-step-dot">5</div>
+            <div class="flow-step-connector"></div>
+          </div>
+          <div class="flow-step-content">
+            <h4>Voice Deepfake Detection</h4>
+            <p>87% probability of AI-generated voice. Spectral analysis reveals synthetic artifacts.</p>
+          </div>
         </div>
         <div class="flow-step">
-          <div class="flow-step-line"><div class="flow-step-dot">6</div></div>
-          <div class="flow-step-content"><h4>Immediate Alert + Timeline</h4><p>Alert sent to citizen and police dashboard. Full investigation timeline auto-generated: Call Started → Threat Detected → Bank Details Requested → Money Transfer Attempt.</p></div>
+          <div class="flow-step-line">
+            <div class="flow-step-dot">6</div>
+          </div>
+          <div class="flow-step-content">
+            <h4>Immediate Alert + Timeline</h4>
+            <p>Alert sent to citizen and police dashboard. Full investigation timeline auto-generated: Call Started →
+              Threat Detected → Bank Details Requested → Money Transfer Attempt.</p>
+          </div>
         </div>
       </div>
       <h3>Key Innovation</h3>
@@ -390,7 +1002,7 @@
 
   <!-- ═══════ 06 — MODULE 2: FRAUD VERIFIER ═══════ -->
   <div class="page">
-    <div class="section-number">Section 06</div>
+    <!-- <div class="section-number">Section 06</div> -->
     <h1 class="section-title">Module 2 — Fraud Verifier</h1>
     <hr class="section-rule">
     <div class="module-card">
@@ -404,19 +1016,40 @@
       <h3>Supported Input Types</h3>
       <table>
         <thead>
-          <tr><th>Input</th><th>AI Technique</th><th>What It Detects</th></tr>
+          <tr>
+            <th>Input</th>
+            <th>AI Technique</th>
+            <th>What It Detects</th>
+          </tr>
         </thead>
         <tbody>
-          <tr><td><strong>📸 Screenshot</strong></td><td>OCR + NLP</td><td>Phishing messages, fake bank alerts, suspicious SMS content</td></tr>
-          <tr><td><strong>🎤 Voice Recording</strong></td><td>Whisper STT + LLM + Deepfake Detection</td><td>Impersonation calls, threatening language, AI-generated voices</td></tr>
-          <tr><td><strong>🌐 Website URL</strong></td><td>DOM Crawl + SSL Analysis</td><td>Fake banking portals, phishing pages, data exfiltration scripts</td></tr>
-          <tr><td><strong>💳 UPI ID</strong></td><td>Database Lookup + Graph Query</td><td>Mule accounts, fraud-linked UPI IDs, connected criminal networks</td></tr>
+          <tr>
+            <td><strong>📸 Screenshot</strong></td>
+            <td>OCR + NLP</td>
+            <td>Phishing messages, fake bank alerts, suspicious SMS content</td>
+          </tr>
+          <tr>
+            <td><strong>🎤 Voice Recording</strong></td>
+            <td>Whisper STT + LLM + Deepfake Detection</td>
+            <td>Impersonation calls, threatening language, AI-generated voices</td>
+          </tr>
+          <tr>
+            <td><strong>🌐 Website URL</strong></td>
+            <td>DOM Crawl + SSL Analysis</td>
+            <td>Fake banking portals, phishing pages, data exfiltration scripts</td>
+          </tr>
+          <tr>
+            <td><strong>💳 UPI ID</strong></td>
+            <td>Database Lookup + Graph Query</td>
+            <td>Mule accounts, fraud-linked UPI IDs, connected criminal networks</td>
+          </tr>
         </tbody>
       </table>
       <h3>AI Processing Pipeline</h3>
       <ol>
         <li><strong>Input Validation</strong> — File type, format, and content verification</li>
-        <li><strong>Content Extraction</strong> — OCR for images, Whisper STT for audio, DOM crawl for websites, database lookup for UPI IDs</li>
+        <li><strong>Content Extraction</strong> — OCR for images, Whisper STT for audio, DOM crawl for websites,
+          database lookup for UPI IDs</li>
         <li><strong>LLM Scam Pattern Analysis</strong> — Classification against known fraud patterns</li>
         <li><strong>Threat Intelligence Cross-Reference</strong> — Check against national fraud database</li>
         <li><strong>Risk Score with Explainability</strong> — Percentage + clear reasons WHY</li>
@@ -439,7 +1072,7 @@
 
   <!-- ═══════ 07 — MODULE 3: POLICE DASHBOARD ═══════ -->
   <div class="page">
-    <div class="section-number">Section 07</div>
+    <!-- <div class="section-number">Section 07</div> -->
     <h1 class="section-title">Module 3 — Police Command Center</h1>
     <hr class="section-rule">
     <div class="module-card">
@@ -452,12 +1085,34 @@
       </div>
       <h3>What Police Can See</h3>
       <table>
-        <thead><tr><th>Data Category</th><th>Details</th><th>Actions Available</th></tr></thead>
+        <thead>
+          <tr>
+            <th>Data Category</th>
+            <th>Details</th>
+            <th>Actions Available</th>
+          </tr>
+        </thead>
         <tbody>
-          <tr><td><strong>📍 Scam Hotspots</strong></td><td>23 identified zones across India (Jamtara, Mewat, etc.)</td><td>Deploy units, set up checkpoints</td></tr>
-          <tr><td><strong>📞 Connected Phone Numbers</strong></td><td>1,847 flagged numbers with type (VOIP/Prepaid), state, report count</td><td>Block numbers, trace origins</td></tr>
-          <tr><td><strong>🌐 Fake Websites</strong></td><td>342 phishing sites with domain age, mimicked target, victim count</td><td>Request takedown, alert ISPs</td></tr>
-          <tr><td><strong>🏦 Bank Accounts</strong></td><td>Mule accounts with UPI IDs, transaction count, total amount, freeze status</td><td>Freeze accounts, issue notices</td></tr>
+          <tr>
+            <td><strong>📍 Scam Hotspots</strong></td>
+            <td>23 identified zones across India (Jamtara, Mewat, etc.)</td>
+            <td>Deploy units, set up checkpoints</td>
+          </tr>
+          <tr>
+            <td><strong>📞 Connected Phone Numbers</strong></td>
+            <td>1,847 flagged numbers with type (VOIP/Prepaid), state, report count</td>
+            <td>Block numbers, trace origins</td>
+          </tr>
+          <tr>
+            <td><strong>🌐 Fake Websites</strong></td>
+            <td>342 phishing sites with domain age, mimicked target, victim count</td>
+            <td>Request takedown, alert ISPs</td>
+          </tr>
+          <tr>
+            <td><strong>🏦 Bank Accounts</strong></td>
+            <td>Mule accounts with UPI IDs, transaction count, total amount, freeze status</td>
+            <td>Freeze accounts, issue notices</td>
+          </tr>
         </tbody>
       </table>
       <h3>Live Alert Feed</h3>
@@ -470,14 +1125,15 @@
         <li><strong>⚪ System:</strong> Intelligence sync completions</li>
       </ul>
       <h3>Investigation Report Generation</h3>
-      <p>Officers can auto-generate comprehensive investigation reports that include case timelines, connected entities, risk assessments, and evidence summaries — ready for court submission.</p>
+      <p>Officers can auto-generate comprehensive investigation reports that include case timelines, connected entities,
+        risk assessments, and evidence summaries — ready for court submission.</p>
     </div>
     <div class="page-footer"><span>Cyber Sentinel AI — Solution Document</span></div>
   </div>
 
   <!-- ═══════ 08 — MODULE 4: GRAPH INTELLIGENCE ═══════ -->
   <div class="page">
-    <div class="section-number">Section 08</div>
+    <!-- <div class="section-number">Section 08</div> -->
     <h1 class="section-title">Module 4 — Graph Intelligence</h1>
     <hr class="section-rule">
     <div class="module-card">
@@ -489,9 +1145,11 @@
         </div>
       </div>
       <h3>The Fraud Chain</h3>
-      <div style="text-align: center; padding: 20px; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0; margin: 16px 0; font-family: 'Courier New', monospace; font-size: 0.9rem;">
+      <div
+        style="text-align: center; padding: 20px; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0; margin: 16px 0; font-family: 'Courier New', monospace; font-size: 0.9rem;">
         📞 Phone &nbsp; → &nbsp; 📶 SIM &nbsp; → &nbsp; 💳 UPI &nbsp; → &nbsp; 🏦 Bank &nbsp; → &nbsp; 👥 Victims<br>
-        <span style="font-size: 0.75rem; color: #64748b;">+91 98765-XXXXX → SIM #89914... → scammer@okaxis → HDFC ****8902 → 47 Citizens</span>
+        <span style="font-size: 0.75rem; color: #64748b;">+91 98765-XXXXX → SIM #89914... → scammer@okaxis → HDFC
+          ****8902 → 47 Citizens</span>
       </div>
       <p>
         The Knowledge Graph automatically connects disparate data points from individual complaints
@@ -522,7 +1180,7 @@
 
   <!-- ═══════ 09 — MODULE 5: THREAT HEAT MAP ═══════ -->
   <div class="page">
-    <div class="section-number">Section 09</div>
+    <!-- <div class="section-number">Section 09</div> -->
     <h1 class="section-title">Module 5 — Threat Heat Map</h1>
     <hr class="section-rule">
     <div class="module-card">
@@ -535,34 +1193,95 @@
       </div>
       <h3>City-Wise Risk Assessment</h3>
       <table>
-        <thead><tr><th>City</th><th>Risk Level</th><th>Active Cases</th><th>Officers</th><th>AI Recommendation</th></tr></thead>
+        <thead>
+          <tr>
+            <th>City</th>
+            <th>Risk Level</th>
+            <th>Active Cases</th>
+            <th>Officers</th>
+            <th>AI Recommendation</th>
+          </tr>
+        </thead>
         <tbody>
-          <tr><td><strong>Mumbai</strong></td><td><span class="tag tag-red">VERY HIGH</span></td><td>3,420</td><td>45</td><td>Deploy 20 additional cyber cell officers</td></tr>
-          <tr><td><strong>Jamtara</strong></td><td><span class="tag tag-red">CRITICAL</span></td><td>5,670</td><td>12</td><td>National priority zone. Deploy inter-state task force</td></tr>
-          <tr><td><strong>Lucknow</strong></td><td><span class="tag tag-red">HIGH</span></td><td>2,150</td><td>18</td><td>Establish dedicated cyber fraud unit</td></tr>
-          <tr><td><strong>Delhi NCR</strong></td><td><span class="tag tag-purple">MEDIUM</span></td><td>1,890</td><td>32</td><td>Increase VOIP monitoring</td></tr>
-          <tr><td><strong>Hyderabad</strong></td><td><span class="tag tag-green">LOW</span></td><td>780</td><td>22</td><td>Maintain current deployment</td></tr>
+          <tr>
+            <td><strong>Mumbai</strong></td>
+            <td><span class="tag tag-red">VERY HIGH</span></td>
+            <td>3,420</td>
+            <td>45</td>
+            <td>Deploy 20 additional cyber cell officers</td>
+          </tr>
+          <tr>
+            <td><strong>Jamtara</strong></td>
+            <td><span class="tag tag-red">CRITICAL</span></td>
+            <td>5,670</td>
+            <td>12</td>
+            <td>National priority zone. Deploy inter-state task force</td>
+          </tr>
+          <tr>
+            <td><strong>Lucknow</strong></td>
+            <td><span class="tag tag-red">HIGH</span></td>
+            <td>2,150</td>
+            <td>18</td>
+            <td>Establish dedicated cyber fraud unit</td>
+          </tr>
+          <tr>
+            <td><strong>Delhi NCR</strong></td>
+            <td><span class="tag tag-purple">MEDIUM</span></td>
+            <td>1,890</td>
+            <td>32</td>
+            <td>Increase VOIP monitoring</td>
+          </tr>
+          <tr>
+            <td><strong>Hyderabad</strong></td>
+            <td><span class="tag tag-green">LOW</span></td>
+            <td>780</td>
+            <td>22</td>
+            <td>Maintain current deployment</td>
+          </tr>
         </tbody>
       </table>
       <h3>AI Crime Predictions</h3>
       <table>
-        <thead><tr><th>Fraud Type</th><th>Predicted Trend</th><th>Risk</th></tr></thead>
+        <thead>
+          <tr>
+            <th>Fraud Type</th>
+            <th>Predicted Trend</th>
+            <th>Risk</th>
+          </tr>
+        </thead>
         <tbody>
-          <tr><td>Deepfake Voice Scams</td><td>↑ 67% (Next 30 days)</td><td><span class="tag tag-red">CRITICAL</span></td></tr>
-          <tr><td>Phishing Websites</td><td>↑ 45% (Next 30 days)</td><td><span class="tag tag-red">VERY HIGH</span></td></tr>
-          <tr><td>Digital Arrest Scams</td><td>↑ 34% (Next 30 days)</td><td><span class="tag tag-red">HIGH</span></td></tr>
-          <tr><td>UPI Fraud</td><td>↑ 12% (Next 30 days)</td><td><span class="tag tag-purple">MEDIUM</span></td></tr>
+          <tr>
+            <td>Deepfake Voice Scams</td>
+            <td>↑ 67% (Next 30 days)</td>
+            <td><span class="tag tag-red">CRITICAL</span></td>
+          </tr>
+          <tr>
+            <td>Phishing Websites</td>
+            <td>↑ 45% (Next 30 days)</td>
+            <td><span class="tag tag-red">VERY HIGH</span></td>
+          </tr>
+          <tr>
+            <td>Digital Arrest Scams</td>
+            <td>↑ 34% (Next 30 days)</td>
+            <td><span class="tag tag-red">HIGH</span></td>
+          </tr>
+          <tr>
+            <td>UPI Fraud</td>
+            <td>↑ 12% (Next 30 days)</td>
+            <td><span class="tag tag-purple">MEDIUM</span></td>
+          </tr>
         </tbody>
       </table>
       <h3>AI-Powered Police Deployment</h3>
-      <p>The system doesn't just show WHERE crime is happening — it tells police WHERE to deploy and HOW MANY officers are needed, using predictive models trained on historical patterns, seasonal trends, and real-time data.</p>
+      <p>The system doesn't just show WHERE crime is happening — it tells police WHERE to deploy and HOW MANY officers
+        are needed, using predictive models trained on historical patterns, seasonal trends, and real-time data.</p>
     </div>
     <div class="page-footer"><span>Cyber Sentinel AI — Solution Document</span></div>
   </div>
 
   <!-- ═══════ 10/11/12 — EXPLAINABILITY, DEEPFAKE, TIMELINE ═══════ -->
   <div class="page">
-    <div class="section-number">Section 10</div>
+    <!-- <div class="section-number">Section 10</div> -->
     <h1 class="section-title">Explainable AI & Risk Scoring</h1>
     <hr class="section-rule">
     <p>
@@ -586,12 +1305,14 @@
         ✓ Voice Deepfake Detected — 87% confidence
       </p>
     </div>
-    <p>Each reason is backed by a confidence percentage, making the AI's decision transparent and auditable. This is essential for court admissibility of AI-generated evidence.</p>
+    <p>Each reason is backed by a confidence percentage, making the AI's decision transparent and auditable. This is
+      essential for court admissibility of AI-generated evidence.</p>
 
-    <div class="section-number" style="margin-top: 40px;">Section 11</div>
+    <!-- <div class="section-number" style="margin-top: 40px;">Section 11</div> -->
     <h1 class="section-title">Voice Deepfake Detection</h1>
     <hr class="section-rule">
-    <p><strong>Many scammers now use AI-generated voices</strong> to impersonate officials, family members, or authority figures. This makes Cyber Sentinel AI's deepfake detection capability a critical differentiator.</p>
+    <p><strong>Many scammers now use AI-generated voices</strong> to impersonate officials, family members, or authority
+      figures. This makes Cyber Sentinel AI's deepfake detection capability a critical differentiator.</p>
     <div class="info-box tech">
       <div class="label">How Voice Deepfake Detection Works</div>
       <p>
@@ -602,53 +1323,112 @@
       </p>
     </div>
 
-    <div class="section-number" style="margin-top: 40px;">Section 12</div>
+    <!-- <div class="section-number" style="margin-top: 40px;">Section 12</div> -->
     <h1 class="section-title">Investigation Timeline</h1>
     <hr class="section-rule">
     <p>Every analyzed call automatically generates a forensic timeline, essential for investigations:</p>
     <div style="padding: 20px; background: #f8fafc; border-radius: 12px; border: 1px solid #e2e8f0; margin: 16px 0;">
       <div style="display: flex; gap: 16px; align-items: flex-start; margin-bottom: 16px;">
-        <div style="width: 12px; height: 12px; border-radius: 50%; background: #94a3b8; flex-shrink: 0; margin-top: 4px;"></div>
-        <div><strong>10:15 AM</strong> — Call Started<br><span style="color: #64748b; font-size: 0.9rem;">Incoming call from +91 98765-XXXXX (VOIP detected)</span></div>
+        <div
+          style="width: 12px; height: 12px; border-radius: 50%; background: #94a3b8; flex-shrink: 0; margin-top: 4px;">
+        </div>
+        <div><strong>10:15 AM</strong> — Call Started<br><span style="color: #64748b; font-size: 0.9rem;">Incoming call
+            from +91 98765-XXXXX (VOIP detected)</span></div>
       </div>
       <div style="display: flex; gap: 16px; align-items: flex-start; margin-bottom: 16px;">
-        <div style="width: 12px; height: 12px; border-radius: 50%; background: #eab308; flex-shrink: 0; margin-top: 4px;"></div>
-        <div><strong>10:17 AM</strong> — Threat Detected<br><span style="color: #64748b; font-size: 0.9rem;">AI flagged "digital arrest" + impersonation pattern</span></div>
+        <div
+          style="width: 12px; height: 12px; border-radius: 50%; background: #eab308; flex-shrink: 0; margin-top: 4px;">
+        </div>
+        <div><strong>10:17 AM</strong> — Threat Detected<br><span style="color: #64748b; font-size: 0.9rem;">AI flagged
+            "digital arrest" + impersonation pattern</span></div>
       </div>
       <div style="display: flex; gap: 16px; align-items: flex-start; margin-bottom: 16px;">
-        <div style="width: 12px; height: 12px; border-radius: 50%; background: #ef4444; flex-shrink: 0; margin-top: 4px;"></div>
-        <div><strong>10:19 AM</strong> — Bank Details Requested<br><span style="color: #64748b; font-size: 0.9rem;">Caller demanded transfer to third-party account</span></div>
+        <div
+          style="width: 12px; height: 12px; border-radius: 50%; background: #ef4444; flex-shrink: 0; margin-top: 4px;">
+        </div>
+        <div><strong>10:19 AM</strong> — Bank Details Requested<br><span
+            style="color: #64748b; font-size: 0.9rem;">Caller demanded transfer to third-party account</span></div>
       </div>
       <div style="display: flex; gap: 16px; align-items: flex-start;">
-        <div style="width: 12px; height: 12px; border-radius: 50%; background: #ef4444; flex-shrink: 0; margin-top: 4px;"></div>
-        <div><strong>10:20 AM</strong> — Money Transfer Attempt<br><span style="color: #64748b; font-size: 0.9rem;">UPI ID shared — flagged in threat database</span></div>
+        <div
+          style="width: 12px; height: 12px; border-radius: 50%; background: #ef4444; flex-shrink: 0; margin-top: 4px;">
+        </div>
+        <div><strong>10:20 AM</strong> — Money Transfer Attempt<br><span style="color: #64748b; font-size: 0.9rem;">UPI
+            ID shared — flagged in threat database</span></div>
       </div>
     </div>
-    <p>This timeline is automatically generated and attached to the investigation report, providing a clear evidence trail for legal proceedings.</p>
+    <p>This timeline is automatically generated and attached to the investigation report, providing a clear evidence
+      trail for legal proceedings.</p>
     <div class="page-footer"><span>Cyber Sentinel AI — Solution Document</span></div>
   </div>
 
   <!-- ═══════ 13 — AI/ML PIPELINE ═══════ -->
   <div class="page">
-    <div class="section-number">Section 13</div>
+    <!-- <div class="section-number">Section 13</div> -->
     <h1 class="section-title">AI/ML Pipeline & Algorithms</h1>
     <hr class="section-rule">
     <p>The complete AI pipeline from input to decision:</p>
     <div class="arch-diagram">
-  Speech ──▶ Whisper ──▶ LLM ──▶ Risk Score ──▶ Knowledge Graph ──▶ Crime Prediction ──▶ Dashboard</div>
+      Speech ──▶ Whisper ──▶ LLM ──▶ Risk Score ──▶ Knowledge Graph ──▶ Crime Prediction ──▶ Dashboard</div>
     <table>
-      <thead><tr><th>AI Technique</th><th>Application</th><th>Module</th></tr></thead>
+      <thead>
+        <tr>
+          <th>AI Technique</th>
+          <th>Application</th>
+          <th>Module</th>
+        </tr>
+      </thead>
       <tbody>
-        <tr><td><strong>Whisper STT</strong></td><td>Real-time speech-to-text conversion in 12+ Indian languages</td><td>Module 1, 2</td></tr>
-        <tr><td><strong>LLM (Large Language Model)</strong></td><td>Scam pattern classification, entity extraction, intent detection</td><td>Module 1, 2</td></tr>
-        <tr><td><strong>Voice Deepfake Detection</strong></td><td>Spectral analysis to identify AI-generated synthetic voices</td><td>Module 1, 2</td></tr>
-        <tr><td><strong>Graph Neural Networks</strong></td><td>Entity relationship discovery: Phone→SIM→UPI→Bank→Victims</td><td>Module 4</td></tr>
-        <tr><td><strong>Community Detection</strong></td><td>Louvain/Label Propagation for fraud cluster identification</td><td>Module 4</td></tr>
-        <tr><td><strong>Computer Vision (CNN)</strong></td><td>Screenshot OCR, fake website visual analysis</td><td>Module 2</td></tr>
-        <tr><td><strong>Anomaly Detection</strong></td><td>Unusual transaction patterns, abnormal call volumes</td><td>Module 3</td></tr>
-        <tr><td><strong>Geospatial Analytics</strong></td><td>Heat map generation, hotspot clustering</td><td>Module 5</td></tr>
-        <tr><td><strong>Time-Series Forecasting</strong></td><td>Crime trend prediction for next 30 days</td><td>Module 5</td></tr>
-        <tr><td><strong>Explainable AI (XAI)</strong></td><td>SHAP/LIME-based reason generation for risk scores</td><td>All Modules</td></tr>
+        <tr>
+          <td><strong>Whisper STT</strong></td>
+          <td>Real-time speech-to-text conversion in 12+ Indian languages</td>
+          <td>Module 1, 2</td>
+        </tr>
+        <tr>
+          <td><strong>LLM (Large Language Model)</strong></td>
+          <td>Scam pattern classification, entity extraction, intent detection</td>
+          <td>Module 1, 2</td>
+        </tr>
+        <tr>
+          <td><strong>Voice Deepfake Detection</strong></td>
+          <td>Spectral analysis to identify AI-generated synthetic voices</td>
+          <td>Module 1, 2</td>
+        </tr>
+        <tr>
+          <td><strong>Graph Neural Networks</strong></td>
+          <td>Entity relationship discovery: Phone→SIM→UPI→Bank→Victims</td>
+          <td>Module 4</td>
+        </tr>
+        <tr>
+          <td><strong>Community Detection</strong></td>
+          <td>Louvain/Label Propagation for fraud cluster identification</td>
+          <td>Module 4</td>
+        </tr>
+        <tr>
+          <td><strong>Computer Vision (CNN)</strong></td>
+          <td>Screenshot OCR, fake website visual analysis</td>
+          <td>Module 2</td>
+        </tr>
+        <tr>
+          <td><strong>Anomaly Detection</strong></td>
+          <td>Unusual transaction patterns, abnormal call volumes</td>
+          <td>Module 3</td>
+        </tr>
+        <tr>
+          <td><strong>Geospatial Analytics</strong></td>
+          <td>Heat map generation, hotspot clustering</td>
+          <td>Module 5</td>
+        </tr>
+        <tr>
+          <td><strong>Time-Series Forecasting</strong></td>
+          <td>Crime trend prediction for next 30 days</td>
+          <td>Module 5</td>
+        </tr>
+        <tr>
+          <td><strong>Explainable AI (XAI)</strong></td>
+          <td>SHAP/LIME-based reason generation for risk scores</td>
+          <td>All Modules</td>
+        </tr>
       </tbody>
     </table>
     <div class="info-box tech">
@@ -666,13 +1446,15 @@
 
   <!-- ═══════ 14 — BACKEND & DATABASE ═══════ -->
   <div class="page">
-    <div class="section-number">Section 14</div>
+    <!-- <div class="section-number">Section 14</div> -->
     <h1 class="section-title">Backend & Database Architecture</h1>
     <hr class="section-rule">
     <p>
-      To support the real-time AI processing and intelligence visualization, Cyber Sentinel AI implements a robust backend architecture using <strong>Node.js, Express, and MongoDB</strong>. This ensures all live reports, fraud entities, and prediction data are securely stored, linked, and instantly accessible to law enforcement.
+      To support the real-time AI processing and intelligence visualization, Cyber Sentinel AI implements a robust
+      backend architecture using <strong>Node.js, Express, and MongoDB</strong>. This ensures all live reports, fraud
+      entities, and prediction data are securely stored, linked, and instantly accessible to law enforcement.
     </p>
-    
+
     <h2>Core Database Schemas (MongoDB)</h2>
     <table>
       <thead>
@@ -700,11 +1482,14 @@
         </tr>
       </tbody>
     </table>
-    
+
     <div class="info-box tech">
       <div class="label">Data Flow & Storage</div>
       <p>
-        When a citizen reports a call or uploads a screenshot, the Express API routes the data through the AI Pipeline (Whisper & LLM). The resulting text, risk score, and identified entities (like UPIs or phone numbers) are structured and saved as MongoDB documents. The <strong>FraudEntity</strong> schema actively links these data points to build the <em>Phone → SIM → UPI → Bank</em> chain used by the Graph Intelligence module.
+        When a citizen reports a call or uploads a screenshot, the Express API routes the data through the AI Pipeline
+        (Whisper & LLM). The resulting text, risk score, and identified entities (like UPIs or phone numbers) are
+        structured and saved as MongoDB documents. The <strong>FraudEntity</strong> schema actively links these data
+        points to build the <em>Phone → SIM → UPI → Bank</em> chain used by the Graph Intelligence module.
       </p>
     </div>
     <div class="page-footer"><span>Cyber Sentinel AI — Solution Document</span></div>
@@ -712,37 +1497,87 @@
 
   <!-- ═══════ 15 — TECHNOLOGY STACK ═══════ -->
   <div class="page">
-    <div class="section-number">Section 15</div>
+    <!-- <div class="section-number">Section 15</div> -->
     <h1 class="section-title">Technology Stack</h1>
     <hr class="section-rule">
     <h2>Frontend</h2>
     <div class="tech-grid">
-      <div class="tech-item"><div class="tech-name">React 19.2</div><div class="tech-role">Core UI framework with hooks-based state management</div></div>
-      <div class="tech-item"><div class="tech-name">Vite 8.1</div><div class="tech-role">Build tool with HMR and optimized production builds</div></div>
-      <div class="tech-item"><div class="tech-name">CSS Custom Properties</div><div class="tech-role">Glassmorphism design system with neon accents</div></div>
-      <div class="tech-item"><div class="tech-name">SVG Graphics</div><div class="tech-role">Interactive graph visualizations and map overlays</div></div>
+      <div class="tech-item">
+        <div class="tech-name">React 19.2</div>
+        <div class="tech-role">Core UI framework with hooks-based state management</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name">Vite 8.1</div>
+        <div class="tech-role">Build tool with HMR and optimized production builds</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name">CSS Custom Properties</div>
+        <div class="tech-role">Glassmorphism design system with neon accents</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name">SVG Graphics</div>
+        <div class="tech-role">Interactive graph visualizations and map overlays</div>
+      </div>
     </div>
     <h2>AI/ML Stack</h2>
     <div class="tech-grid">
-      <div class="tech-item"><div class="tech-name">OpenAI Whisper</div><div class="tech-role">Speech-to-text with multilingual Indian language support</div></div>
-      <div class="tech-item"><div class="tech-name">LLM (GPT/Gemini)</div><div class="tech-role">Scam pattern classification and entity extraction</div></div>
-      <div class="tech-item"><div class="tech-name">Neo4j / NetworkX</div><div class="tech-role">Knowledge graph database for entity relationships</div></div>
-      <div class="tech-item"><div class="tech-name">SHAP / LIME</div><div class="tech-role">Explainable AI for transparent risk scoring</div></div>
+      <div class="tech-item">
+        <div class="tech-name">OpenAI Whisper</div>
+        <div class="tech-role">Speech-to-text with multilingual Indian language support</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name">LLM (GPT/Gemini)</div>
+        <div class="tech-role">Scam pattern classification and entity extraction</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name">Neo4j / NetworkX</div>
+        <div class="tech-role">Knowledge graph database for entity relationships</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name">SHAP / LIME</div>
+        <div class="tech-role">Explainable AI for transparent risk scoring</div>
+      </div>
     </div>
     <h2>Backend & Database</h2>
     <div class="tech-grid">
-      <div class="tech-item"><div class="tech-name">Node.js & Express</div><div class="tech-role">REST API serving data between AI models and UI</div></div>
-      <div class="tech-item"><div class="tech-name">MongoDB & Mongoose</div><div class="tech-role">NoSQL database for fast, flexible schema storage</div></div>
+      <div class="tech-item">
+        <div class="tech-name">Node.js & Express</div>
+        <div class="tech-role">REST API serving data between AI models and UI</div>
+      </div>
+      <div class="tech-item">
+        <div class="tech-name">MongoDB & Mongoose</div>
+        <div class="tech-role">NoSQL database for fast, flexible schema storage</div>
+      </div>
     </div>
     <h2>Design System</h2>
     <table>
-      <thead><tr><th>Element</th><th>Implementation</th></tr></thead>
+      <thead>
+        <tr>
+          <th>Element</th>
+          <th>Implementation</th>
+        </tr>
+      </thead>
       <tbody>
-        <tr><td>Color System</td><td>Dark base (#05050F) with Cyan, Purple, Red, Green, Yellow neon accents</td></tr>
-        <tr><td>Typography</td><td>Orbitron (display) + Inter (body) from Google Fonts</td></tr>
-        <tr><td>Glassmorphism</td><td>Semi-transparent backgrounds, backdrop-filter blur, subtle borders</td></tr>
-        <tr><td>Animations</td><td>@keyframes pulse, CSS transitions for interactive feedback</td></tr>
-        <tr><td>Layout</td><td>Flexbox + CSS Grid responsive layouts</td></tr>
+        <tr>
+          <td>Color System</td>
+          <td>Dark base (#05050F) with Cyan, Purple, Red, Green, Yellow neon accents</td>
+        </tr>
+        <tr>
+          <td>Typography</td>
+          <td>Orbitron (display) + Inter (body) from Google Fonts</td>
+        </tr>
+        <tr>
+          <td>Glassmorphism</td>
+          <td>Semi-transparent backgrounds, backdrop-filter blur, subtle borders</td>
+        </tr>
+        <tr>
+          <td>Animations</td>
+          <td>@keyframes pulse, CSS transitions for interactive feedback</td>
+        </tr>
+        <tr>
+          <td>Layout</td>
+          <td>Flexbox + CSS Grid responsive layouts</td>
+        </tr>
       </tbody>
     </table>
     <div class="page-footer"><span>Cyber Sentinel AI — Solution Document</span></div>
@@ -750,13 +1585,22 @@
 
   <!-- ═══════ 16/17 — IMPACT & CONCLUSION ═══════ -->
   <div class="page">
-    <div class="section-number">Section 16</div>
+    <!-- <div class="section-number">Section 16</div> -->
     <h1 class="section-title">Impact, Scalability & Future Scope</h1>
     <hr class="section-rule">
     <div class="kpi-grid">
-      <div class="kpi-card"><div class="kpi-value">60%</div><div class="kpi-label">Fraud Response Time Reduction</div></div>
-      <div class="kpi-card"><div class="kpi-value">10x</div><div class="kpi-label">Faster Network Discovery</div></div>
-      <div class="kpi-card"><div class="kpi-value">87%</div><div class="kpi-label">Deepfake Detection Accuracy</div></div>
+      <div class="kpi-card">
+        <div class="kpi-value">60%</div>
+        <div class="kpi-label">Fraud Response Time Reduction</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">10x</div>
+        <div class="kpi-label">Faster Network Discovery</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">87%</div>
+        <div class="kpi-label">Deepfake Detection Accuracy</div>
+      </div>
     </div>
     <h2>Why This Solution Wins</h2>
     <ul>
@@ -769,24 +1613,47 @@
     </ul>
     <h2>Future Roadmap</h2>
     <table>
-      <thead><tr><th>Phase</th><th>Enhancement</th></tr></thead>
+      <thead>
+        <tr>
+          <th>Phase</th>
+          <th>Enhancement</th>
+        </tr>
+      </thead>
       <tbody>
-        <tr><td><strong>Phase 1</strong></td><td>Real API integration (NCRB, Telecom, Banking APIs)</td></tr>
-        <tr><td><strong>Phase 1</strong></td><td>Authentication & role-based access control</td></tr>
-        <tr><td><strong>Phase 2</strong></td><td>Real-time Whisper STT with live microphone input</td></tr>
-        <tr><td><strong>Phase 2</strong></td><td>Blockchain evidence chain for court admissibility</td></tr>
-        <tr><td><strong>Phase 3</strong></td><td>Predictive fraud modeling with temporal graph networks</td></tr>
-        <tr><td><strong>Phase 3</strong></td><td>Cross-border intelligence (Interpol integration)</td></tr>
+        <tr>
+          <td><strong>Phase 1</strong></td>
+          <td>Real API integration (NCRB, Telecom, Banking APIs)</td>
+        </tr>
+        <tr>
+          <td><strong>Phase 1</strong></td>
+          <td>Authentication & role-based access control</td>
+        </tr>
+        <tr>
+          <td><strong>Phase 2</strong></td>
+          <td>Real-time Whisper STT with live microphone input</td>
+        </tr>
+        <tr>
+          <td><strong>Phase 2</strong></td>
+          <td>Blockchain evidence chain for court admissibility</td>
+        </tr>
+        <tr>
+          <td><strong>Phase 3</strong></td>
+          <td>Predictive fraud modeling with temporal graph networks</td>
+        </tr>
+        <tr>
+          <td><strong>Phase 3</strong></td>
+          <td>Cross-border intelligence (Interpol integration)</td>
+        </tr>
       </tbody>
     </table>
 
     <!-- Section 17 -->
-    <div class="section-number" style="margin-top: 40px;">Section 17</div>
+    <!-- <div class="section-number" style="margin-top: 40px;">Section 17</div> -->
     <h1 class="section-title">Conclusion</h1>
     <hr class="section-rule">
     <p>
       Cyber Sentinel AI represents a paradigm shift in digital public safety. By integrating <strong>Whisper STT,
-      LLM Analysis, Knowledge Graphs, Voice Deepfake Detection, Explainable AI, and Crime Prediction</strong>
+        LLM Analysis, Knowledge Graphs, Voice Deepfake Detection, Explainable AI, and Crime Prediction</strong>
       into a single platform, it addresses the complete lifecycle of cyber fraud — from real-time citizen
       protection to network-level criminal prosecution.
     </p>
@@ -797,14 +1664,17 @@
     </p>
     <div class="info-box solution" style="margin-top: 20px;">
       <div class="label">Mission</div>
-      <p><em>"AI solving a real problem — protecting every citizen from cyber fraud in real-time, while giving law enforcement the intelligence to dismantle criminal networks."</em></p>
+      <p><em>"AI solving a real problem — protecting every citizen from cyber fraud in real-time, while giving law
+          enforcement the intelligence to dismantle criminal networks."</em></p>
     </div>
     <div style="text-align: center; margin-top: 48px; padding: 32px; border-top: 2px solid #e2e8f0;">
-      <div style="font-family: 'Orbitron', sans-serif; font-size: 1.2rem; color: #0f172a; margin-bottom: 8px;">CYBER SENTINEL AI</div>
+      <div style="font-family: 'Orbitron', sans-serif; font-size: 1.2rem; color: #0f172a; margin-bottom: 8px;">CYBER
+        SENTINEL AI</div>
       <div style="font-size: 0.85rem; color: #94a3b8; letter-spacing: 3px;">AI FOR DIGITAL PUBLIC SAFETY</div>
       <div style="margin-top: 16px; font-size: 0.8rem; color: #94a3b8;">© 2026 | All Rights Reserved</div>
     </div>
   </div>
 
 </body>
+
 </html>
